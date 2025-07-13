@@ -37,7 +37,7 @@ y = pd.Series([10.5, 15.2, 22.1, 30.8])
 # Initialize LLM-Feynman
 llm_feynman = LLMFeynman(
     model_type="huggingface",
-    model_name="meta-llama/Llama-2-7b-chat-hf"
+    model_name="meta-llama/Llama-3.3-8b"
 )
 
 # Discover formulas with physical interpretations
@@ -77,17 +77,10 @@ print(f"Physical meaning: {interpretation}")
 ### Custom Model Configuration
 
 ```python
-# Using OpenAI models
-llm_feynman = LLMFeynman(
-    model_type="openai",
-    model_name="gpt-4",
-    api_key="your-api-key"
-)
-
 # Using local HuggingFace model with custom settings
 llm_feynman = LLMFeynman(
     model_type="huggingface",
-    model_name="microsoft/DialoGPT-large",
+    model_name="model_name",
     device="cuda",
     torch_dtype="float16"
 )
