@@ -1,4 +1,4 @@
-# LLM-Feynman: Automated Scientific Discovery with Large Language Models
+# LLM-formula
 
 A Python library for automated discovery of mathematical formulas from scientific data using Large Language Models (LLMs), implementing the methodology from the LLM-Feynman paper.
 
