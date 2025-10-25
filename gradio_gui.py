@@ -42,10 +42,10 @@ except Exception as e:
 
 def safe_import_from_llm_feynman(module_path, class_names):
     """
-    Safely import from llm-feynman directory
+    Safely import from the llm_feynman package
     
     Args:
-        module_path: Module path relative to llm-feynman (e.g., 'models.openai_model')
+        module_path: Module path relative to llm_feynman (e.g., 'models.openai_model')
         class_names: List of class names to import or a single class name string
     
     Returns:
