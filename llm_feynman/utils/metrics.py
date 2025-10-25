@@ -1,10 +1,9 @@
 # llm_feynman/utils/metrics.py
 import numpy as np
 import pandas as pd
-<<<<<<< HEAD
 from typing import List, Dict, Any
 from sklearn.metrics import mean_absolute_error, r2_score, accuracy_score, precision_score, recall_score, f1_score
-from ..core.symbolic_regression import Formula
+from core.symbolic_regression import Formula
 
 def evaluate_formulas(formulas: List[Formula], X: pd.DataFrame, y: pd.Series, task_type: str) -> Dict[str, Any]:
     """Evaluate a list of formulas on test data"""
@@ -13,19 +12,6 @@ def evaluate_formulas(formulas: List[Formula], X: pd.DataFrame, y: pd.Series, ta
         'individual_results': [],
         'summary_stats': {},
         'best_formula': None
-=======
-from typing import Dict, Any, List
-from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
-from core.symbolic_regression import Formula
-
-def evaluate_formulas(formulas: List[Formula], X: pd.DataFrame, y: pd.Series, 
-                     task_type: str = "regression") -> Dict[str, Any]:
-    """Evaluate formulas on test data"""
-    
-    evaluation_results = {
-        'individual_results': [],
-        'summary': {}
->>>>>>> 10f4e4c (Initial import of core LLM-Feynman modules)
     }
     
     for i, formula in enumerate(formulas):
@@ -35,17 +21,12 @@ def evaluate_formulas(formulas: List[Formula], X: pd.DataFrame, y: pd.Series,
             if task_type == "regression":
                 mae = mean_absolute_error(y, y_pred)
                 r2 = r2_score(y, y_pred)
-<<<<<<< HEAD
-=======
-                mse = mean_squared_error(y, y_pred)
->>>>>>> 10f4e4c (Initial import of core LLM-Feynman modules)
                 
                 result = {
                     'formula_id': i,
                     'expression': formula.expression,
                     'mae': mae,
                     'r2': r2,
-<<<<<<< HEAD
                     'complexity': formula.complexity,
                     'interpretability': formula.interpretability
                 }
@@ -106,33 +87,3 @@ def evaluate_formulas(formulas: List[Formula], X: pd.DataFrame, y: pd.Series,
             results['best_formula'] = results['individual_results'][best_idx]
     
     return results
-=======
-                    'mse': mse,
-                    'rmse': np.sqrt(mse)
-                }
-            else:
-                # Classification metrics would go here
-                result = {
-                    'formula_id': i,
-                    'expression': formula.expression,
-                    'accuracy': 0.0  # Placeholder
-                }
-            
-            evaluation_results['individual_results'].append(result)
-            
-        except Exception as e:
-            print(f"Evaluation failed for formula {i}: {e}")
-    
-    # Summary statistics
-    if evaluation_results['individual_results']:
-        results = evaluation_results['individual_results']
-        evaluation_results['summary'] = {
-            'num_formulas': len(results),
-            'best_r2': max(r['r2'] for r in results if 'r2' in r),
-            'best_mae': min(r['mae'] for r in results if 'mae' in r),
-            'avg_r2': np.mean([r['r2'] for r in results if 'r2' in r]),
-            'avg_mae': np.mean([r['mae'] for r in results if 'mae' in r])
-        }
-    
-    return evaluation_results
->>>>>>> 10f4e4c (Initial import of core LLM-Feynman modules)
