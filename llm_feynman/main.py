@@ -2,15 +2,15 @@
 import pandas as pd
 import numpy as np
 from typing import Dict, Any, Optional, List, Union
-from models.base_model import BaseLLMModel
-from models.hf_model import HuggingFaceModel
-from models.openai_model import OpenAIModel
-from core.data_preprocessing import DataPreprocessor
-from core.feature_engineering import FeatureEngineer
-from core.symbolic_regression import SymbolicRegressor, Formula
-from core.formula_interpretation import FormulaInterpreter
-from utils.plotting import plot_results
-from utils.metrics import evaluate_formulas
+from .models.base_model import BaseLLMModel
+from .models.hf_model import HuggingFaceModel
+from .models.openai_model import OpenAIModel
+from .core.data_preprocessing import DataPreprocessor
+from .core.feature_engineering import FeatureEngineer
+from .core.symbolic_regression import SymbolicRegressor, Formula
+from .core.formula_interpretation import FormulaInterpreter
+from .utils.plotting import plot_results
+from .utils.metrics import evaluate_formulas
 
 class LLMFeynman:
     """

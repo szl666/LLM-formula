@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from typing import List, Dict, Any
 from sklearn.metrics import mean_absolute_error, r2_score, accuracy_score, precision_score, recall_score, f1_score
-from core.symbolic_regression import Formula
+from ..core.symbolic_regression import Formula
 
 def evaluate_formulas(formulas: List[Formula], X: pd.DataFrame, y: pd.Series, task_type: str) -> Dict[str, Any]:
     """Evaluate a list of formulas on test data"""

@@ -18,40 +18,24 @@ import traceback
 from typing import Dict, List, Optional, Tuple, Any
 from datetime import datetime
 
-# Add current directory to path to import LLM-Feynman modules
+# Add current directory to path to import LLM-Feynman package
 current_dir = os.path.dirname(os.path.abspath(__file__))
-llm_feynman_dir = os.path.join(current_dir, 'llm-feynman')
-
-# Add both current dir and llm-feynman dir to path
 if current_dir not in sys.path:
     sys.path.insert(0, current_dir)
-if llm_feynman_dir not in sys.path:
-    sys.path.insert(0, llm_feynman_dir)
 
 try:
-    # Change to llm-feynman directory for imports
-    original_cwd = os.getcwd()
-    os.chdir(llm_feynman_dir)
-    
-    from main import LLMFeynman
-    from core.symbolic_regression import Formula
-    
-    # Change back to original directory
-    os.chdir(original_cwd)
-    
-    print("✅ LLM-Feynman modules loaded successfully")
+    from llm_feynman import LLMFeynman
+    from llm_feynman.core.symbolic_regression import Formula
+    print("✅ LLM-Feynman package loaded successfully")
 except ImportError as e:
-    print(f"❌ Warning: Unable to import LLM-Feynman module: {e}")
+    print(f"❌ Warning: Unable to import llm_feynman package: {e}")
     print(f"   Python path: {sys.path}")
     print(f"   Current directory: {os.getcwd()}")
-    print(f"   LLM-Feynman directory: {llm_feynman_dir}")
-    import traceback
     traceback.print_exc()
     LLMFeynman = None
     Formula = None
 except Exception as e:
-    print(f"❌ Unexpected error loading LLM-Feynman: {e}")
-    import traceback
+    print(f"❌ Unexpected error loading llm_feynman: {e}")
     traceback.print_exc()
     LLMFeynman = None
     Formula = None
@@ -71,12 +55,8 @@ def safe_import_from_llm_feynman(module_path, class_names):
         class_names = [class_names]
     
     try:
-        # Ensure llm-feynman directory is in path
-        if llm_feynman_dir not in sys.path:
-            sys.path.insert(0, llm_feynman_dir)
-        
-        # Import module
-        module = __import__(module_path, fromlist=class_names)
+        import importlib
+        module = importlib.import_module(f"llm_feynman.{module_path}")
         
         # Get classes
         results = [getattr(module, name) for name in class_names]
